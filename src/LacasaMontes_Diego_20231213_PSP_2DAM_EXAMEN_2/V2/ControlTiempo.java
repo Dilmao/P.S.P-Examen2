@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ControlTiempo implements Runnable {
-    public Buzon a_Buzon = null;
+    public Buzon a_Buzon;
 
     public ControlTiempo(Buzon a_Buzon) {
         this.a_Buzon = a_Buzon;
@@ -12,7 +12,7 @@ public class ControlTiempo implements Runnable {
 
     @Override
     public void run() {
-        // Actualiza la hora en el objeto Buzon.
+        // Actualiza la hora guardada en el objeto Buzon.
         Calendar l_Calendario = new GregorianCalendar();
         a_Buzon.a_Hora = l_Calendario.get(Calendar.HOUR_OF_DAY)
                 + ":" + l_Calendario.get(Calendar.MINUTE)

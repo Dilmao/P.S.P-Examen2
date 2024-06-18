@@ -15,17 +15,20 @@ public class Scroll {
     public static void main(String[] args) {
         // Creación del objeto Buzon para almacenar información.
         Buzon a_Buzon = new Buzon();
-        // Obtiene la hora actual del sistema y la asigna al objeto Buzon.
+
+        // Se obtiene la hora actual del sistema y se guarda en el objeto Buzon.
         Calendar l_Calendario = new GregorianCalendar();
         a_Buzon.a_Hora = l_Calendario.get(Calendar.HOUR_OF_DAY)
                 + ":" + l_Calendario.get(Calendar.MINUTE)
                 + ":" + l_Calendario.get(Calendar.SECOND);
 
         try {
-            // Creación de los objetos Runnable y del ScheduledExecutorService para ejecutar tareas programadas.
+            // COMENTARIO.
+            final ScheduledExecutorService l_ExecutorPlan = Executors.newScheduledThreadPool(NUMERO_HILOS);
+
+            // COMENTARIO.
             final Runnable l_ObjRunnable1 = new Letrero(a_Buzon);
             final Runnable l_ObjRunnable2 = new ControlTiempo(a_Buzon);
-            final ScheduledExecutorService l_ExecutorPlan = Executors.newScheduledThreadPool(NUMERO_HILOS);
 
             // Programa la ejecución periódica de las tareas definidas.
             l_ExecutorPlan.scheduleWithFixedDelay(l_ObjRunnable1, PAUSA_INICIAL, CADENCIA_ESCRITURA, TimeUnit.SECONDS);
